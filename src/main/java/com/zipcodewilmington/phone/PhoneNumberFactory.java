@@ -53,9 +53,12 @@ public final class PhoneNumberFactory {
      * @return a new phone number object
      */ //TODO - if input is valid, return respective PhoneNumber object, else return null
     public static PhoneNumber createPhoneNumberSafely(int areaCode, int centralOfficeCode, int phoneLineCode) {
+        String numberAsString = formatPhoneNumberToString(areaCode, centralOfficeCode, phoneLineCode);
         try {
-            return createPhoneNumber(formatPhoneNumberToString(areaCode, centralOfficeCode, phoneLineCode));
+            logger.info("Attempting to create a new PhoneNumber object with a value of " + numberAsString);
+            return createPhoneNumber(numberAsString);
         } catch(InvalidPhoneNumberFormatException e) {
+            logger.warn(numberAsString.toString() + "is not a valid phone number");
             return null;
         }
     }
