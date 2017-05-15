@@ -24,9 +24,9 @@ public final class PhoneNumberFactory {
      * @return array of randomly generated PhoneNumber objects
      */ //TODO - Implement logic
     public static PhoneNumber[] createRandomPhoneNumberArray(int phoneNumberCount) {
-        PhoneNumber[] numbers = new PhoneNumber[5];
+        PhoneNumber[] numbers = new PhoneNumber[phoneNumberCount];
         int numberOfRandoms = 0;
-        while (numberOfRandoms < 5) {
+        while (numberOfRandoms < phoneNumberCount) {
             PhoneNumber number = createRandomPhoneNumber();
             if (number != null) {
                 numbers[numberOfRandoms] = number;
