@@ -10,6 +10,9 @@ import org.slf4j.LoggerFactory;
  */
 public final class PhoneNumberFactory {
     private static final Logger logger = LoggerFactory.getLogger(PhoneNumberFactory.class);
+    private int areaCode;
+    private int centralOffice;
+    private int phoneLine;
 
     private PhoneNumberFactory() {
         /** This constructor is private
@@ -39,7 +42,15 @@ public final class PhoneNumberFactory {
      * @return a new phone number object
      */ //TODO - if input is valid, return respective PhoneNumber object, else return null
     public static PhoneNumber createPhoneNumberSafely(int areaCode, int centralOfficeCode, int phoneLineCode) {
-        return createPhoneNumber(null);
+        try {
+            return createPhoneNumber(formatPhoneNumberToString(areaCode, centralOfficeCode, phoneLineCode));
+        } catch(InvalidPhoneNumberFormatException e) {
+            return null;
+        }
+    }
+
+    private static String formatPhoneNumberToString(int areaCode, int centralOfficeCode, int phoneLineCode) {
+        return String.format("(%d)-%d-%d", areaCode, centralOfficeCode, phoneLineCode);
     }
 
     /**
@@ -47,7 +58,7 @@ public final class PhoneNumberFactory {
      * @return a new phone number object
      * @throws InvalidPhoneNumberFormatException - thrown if phoneNumberString does not match acceptable format
      */ // TODO - Add throws statement to method signature
-    public static PhoneNumber createPhoneNumber(String phoneNumberString) {
-        return null;
+    public static PhoneNumber createPhoneNumber(String phoneNumberString) throws InvalidPhoneNumberFormatException {
+        return new PhoneNumber(phoneNumberString);
     }
 }

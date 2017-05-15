@@ -1,10 +1,7 @@
-package com.zipcodewilmington;
+package com.zipcodewilmington.phone;
 
 import com.zipcodewilmington.exceptions.InvalidPhoneNumberFormatException;
-import com.zipcodewilmington.phone.PhoneNumber;
-import com.zipcodewilmington.phone.PhoneNumberFactory;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.logging.Level;
