@@ -1,7 +1,7 @@
 package com.zipcodewilmington.phone;
 
 import com.zipcodewilmington.exceptions.InvalidPhoneNumberFormatException;
-import com.zipcodewilmington.tools.RandomNumberFactory;
+import com.zipcodewilmington.tools.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,14 +24,25 @@ public final class PhoneNumberFactory {
      * @return array of randomly generated PhoneNumber objects
      */ //TODO - Implement logic
     public static PhoneNumber[] createRandomPhoneNumberArray(int phoneNumberCount) {
-        return null;
+        PhoneNumber[] numbers = new PhoneNumber[5];
+        int numberOfRandoms = 0;
+        while (numberOfRandoms < 5) {
+            PhoneNumber number = createRandomPhoneNumber();
+            if (number != null) {
+                numbers[numberOfRandoms] = number;
+                numberOfRandoms++;
+            }
+        }
+
+        return numbers;
     }
 
     /**
      * @return an instance of PhoneNumber with randomly generated phone number value
      */ //TODO - Implement logic
     private static PhoneNumber createRandomPhoneNumber() {
-        return createPhoneNumberSafely(-1, -1, -1);
+        return createPhoneNumberSafely(RandomNumberFactory.createInteger(100, 999),
+                RandomNumberFactory.createInteger(100, 999), RandomNumberFactory.createInteger(1000, 9999));
     }
 
 
